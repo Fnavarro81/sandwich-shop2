@@ -16,44 +16,44 @@ public class SandwichShop {
         double regularLoadedFee = 1.00;
         double largeLoadedFee = 1.75;
         double trueLoadedFee = 0;
-        boolean choosingSizeAndLoaded = true;
+        boolean choosingSize = true;
+        String size = "";
 
         // Assigning Price
-        while (choosingSizeAndLoaded) {
+        while (choosingSize) {
             System.out.println("Would you like 1.Regular: base price $5.45 or 2.Large: base price $8.95?: ");
-            String size = inputScanner.next();
-
-            // Loaded selection
-            System.out.println("Would you like your sandwich loaded? Yea or No: ");
-            String loaded = inputScanner.next();
-
+            size = inputScanner.next();
             if (size.equalsIgnoreCase("1")) {
                 sandwichPrice = regularPrice;
-                    if (loaded.equalsIgnoreCase("Yes")) {
-                        trueLoadedFee = regularLoadedFee;
-                        System.out.println("Loaded Fee applied for regular sandwich!");
-                        choosingSizeAndLoaded = false;
-                    } else if (loaded.equalsIgnoreCase("No")) {
-                        System.out.println("No loaded fee applied");
-                        choosingSizeAndLoaded = false;
-                    } else {
-                        System.out.println("Invalid choice, please use either Yes or No");
-                    }
+                choosingSize = false;
             } else if (size.equalsIgnoreCase("2")) {
                 sandwichPrice = largePrice;
-                choosingSizeAndLoaded = false;
-                    if (loaded.equalsIgnoreCase("Yes")) {
-                        trueLoadedFee = largeLoadedFee;
-                        System.out.println("Loaded Fee applied for large sandwich!");
-                        choosingSizeAndLoaded = false;
-                    } else if (loaded.equalsIgnoreCase("No")) {
-                        System.out.println("No loaded fee applied");
-                        choosingSizeAndLoaded = false;
-                    } else {
-                        System.out.println("Invalid choice, please use either Yes or No");
-                    }
+                choosingSize = false;
             } else {
                 System.out.println("Invalid choice, please use either 1 or 2");
+            }
+        }
+        // Loaded variable and validation
+        boolean choosingLoaded = true;
+
+        // Loaded selection
+        while (choosingLoaded) {
+            System.out.println("Would you like your sandwich loaded? Yea or No: ");
+            String loaded = inputScanner.next();
+            if (loaded.equalsIgnoreCase("Yes")) {
+                if (size.equalsIgnoreCase("1")) {
+                    trueLoadedFee = regularLoadedFee;
+                    System.out.println("Regular loaded fee applied!");
+                }else {
+                    trueLoadedFee = largeLoadedFee;
+                    System.out.println("Large loaded fee applied!");
+                }
+                choosingLoaded = false;
+            }else if (loaded.equalsIgnoreCase("No")) {
+                System.out.println("No loaded fee applied");
+                choosingLoaded = false;
+            }else {
+                System.out.println("Invalid choice, please use Yes or NO");
             }
         }
         // Assigning discount to age
