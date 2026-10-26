@@ -38,7 +38,7 @@ public class SandwichShop {
 
         // Loaded selection
         while (choosingLoaded) {
-            System.out.println("Would you like your sandwich loaded? Yea or No: ");
+            System.out.println("Would you like your sandwich loaded? Yes or No: ");
             String loaded = inputScanner.next();
             if (loaded.equalsIgnoreCase("Yes")) {
                 if (size.equalsIgnoreCase("1")) {
@@ -58,14 +58,14 @@ public class SandwichShop {
         }
         // Assigning discount to age
         System.out.println("What is your age?: ");
-        double age = inputScanner.nextDouble();
+        int age = inputScanner.nextInt();
 
         if (age <= 17) {
             trueDiscount = pediatricAgeDiscount;
-            System.out.println("You are receiving a %10 discount on your order!");
+            System.out.println("You are receiving a 10% discount on your order!");
         } else if (age >= 65) {
             trueDiscount = geriatricAgeDiscount;
-            System.out.println("You are receiving a %20 discount on your order!");
+            System.out.println("You are receiving a 20% discount on your order!");
         }
         // Total cost displayed
         double totalCost = (sandwichPrice * trueDiscount) + trueLoadedFee;
